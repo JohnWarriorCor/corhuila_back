@@ -26,13 +26,15 @@ public class CustomPasswordEncode implements PasswordEncoder {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 
 	@Override
 	public boolean matches(CharSequence password, String encodedPassword) {
-		return encode(password).equals(encodedPassword) ? true : false;
+		//String caracterAEliminar = "\\x";
+		//encodedPassword = encodedPassword.replace(String.valueOf(caracterAEliminar), "");
+		System.out.println("FUNCION:: " + password + " U " + encode(password) + " U " + encodedPassword.toUpperCase());
+		return encode(password).equals(encodedPassword.toUpperCase()) ? true : false;
 	}
 
 }

@@ -19,7 +19,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario buscarUsuario(String username) {
-		String sql = "SELECT * FROM general.vista_usuario_general vug "
+		String sql = "SELECT * FROM general.vista_usuario_alterno vug "
 				+ "WHERE vug.usu_nombre = ? AND vug.usu_estado = 1 "
 				+ "LIMIT 1;";
 		return jdbcTemplate.queryForObject(sql, new Object[] { username }, new UsuarioRowMapper());
@@ -29,7 +29,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 	@Override
 	public boolean validarUsuario(String username) {
 		int result = 0;
-		String sql = "select COUNT(usu_nombre) from general.vista_usuario_general " 
+		String sql = "select COUNT(usu_nombre) from general.vista_usuario_alterno " 
 				+ "where usu_nombre = ? ";
 		result =  jdbcTemplate.queryForObject(sql, new Object[] { username }, Integer.class);
 		return result > 0 ? true : false;

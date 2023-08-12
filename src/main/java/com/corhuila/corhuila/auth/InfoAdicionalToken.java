@@ -33,6 +33,8 @@ public class InfoAdicionalToken implements TokenEnhancer{
 		
 		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
 		
+		System.out.println("::::" + accessToken);
+		
 		return accessToken;
 	}
 
