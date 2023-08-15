@@ -55,6 +55,26 @@ public class AppConfig {
 		return jdbcTemplate;
 	}
 	
+	@Bean(name = "JDBCTemplateCorhuilaEjecucion")
+	public JdbcTemplate jdbcTemplateEjecucion() throws Exception {
+
+		DataSource dataSource = null;
+
+		if (perfilSeleccionado.equals("local")) {
+
+			dataSource = (DataSource) new JndiTemplate().lookup("jboss/datasources/john");
+
+		} else if (perfilSeleccionado.equals("test") || perfilSeleccionado.equals("produccion")) {
+
+			dataSource = (DataSource) new JndiTemplate().lookup("java:jboss/datasources/john");
+
+		}
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		jdbcTemplate.setDataSource(dataSource);
+
+		return jdbcTemplate;
+	}
+	
 	@Bean(name = "NamedJDBCTemplateJohnConsulta")
 	public NamedParameterJdbcTemplate jdbcTemplateConsulta() throws Exception {
 

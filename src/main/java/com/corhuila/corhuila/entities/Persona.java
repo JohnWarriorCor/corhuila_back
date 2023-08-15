@@ -10,14 +10,20 @@ import lombok.NoArgsConstructor;
 public class Persona implements Serializable {
 
 	private int codigo;
+	
+	private String identificacion;
+	
+	private TipoIdentificacion tipoId;
+	
+	private String libretaMilitar;
 
 	private String nombre;
 
 	private String apellido;
-
-	private String identificacion;
 	
-	private String tipoDocumento;
+	private SexoBiologico sexoBiologico;
+	
+	private int lugarExpedición;
 	
 	private String expedicion;
 	
