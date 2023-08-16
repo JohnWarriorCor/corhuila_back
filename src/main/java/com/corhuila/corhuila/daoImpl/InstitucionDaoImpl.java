@@ -55,7 +55,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "inner join general.caracter_academico ca on i.caa_codigo = ca.caa_codigo "
 				+ "inner join general.pais p on i.pai_codigo = p.pai_codigo "
 				+ "inner join general.departamento d on i.dep_divipola = d.dep_divipola "
-				+ "inner join general.municipio m on i.mun_divipola = m.mun_divipola ";
+				+ "inner join general.municipio m on i.mun_divipola = m.mun_divipola order by i.ins_codigo desc";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
 
