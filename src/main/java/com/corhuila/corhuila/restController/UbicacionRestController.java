@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.corhuila.corhuila.service.IUbicacionService;
+import com.corhuila.corhuila.entities.CabecerasCentrosPoblados;
 import com.corhuila.corhuila.entities.Departamento;
 import com.corhuila.corhuila.entities.Municipio;
 import com.corhuila.corhuila.entities.Pais;
@@ -45,6 +46,13 @@ public class UbicacionRestController {
 	public List<Municipio> obtenerDepartamentosPorPais(@PathVariable String depCodigo) {
 		
 		return ubicacionService.obtenerMunicipiosPorDepartamento(depCodigo);
+		
+	}
+	
+	@GetMapping(path = "obtener-ccp-por-municipio/{munCodigo}")
+	public List<CabecerasCentrosPoblados> obtenerCcpPorMunicipio(@PathVariable String munCodigo) {
+		
+		return ubicacionService.obtenerCcpPorMunicipio(munCodigo);
 		
 	}
 

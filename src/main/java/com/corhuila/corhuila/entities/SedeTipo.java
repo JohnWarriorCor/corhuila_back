@@ -7,18 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CabecerasCentrosPoblados implements Serializable {
-
+public class SedeTipo implements Serializable {
+	
 	private int codigo;
-
 	private String nombre;
-	
-	private String divipola;
-
-	private String tipo;
-	
-	private Municipio municipio;
+	private int estado;
 	
 	private static final long serialVersionUID = 1L;
-	
+
 }

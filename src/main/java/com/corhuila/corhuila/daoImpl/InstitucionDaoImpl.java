@@ -46,6 +46,21 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 		String sql = "select * from general.sector s where s.sec_estado = 1";
 		return jdbcTemplate.query(sql, new SectorSetExtractor());
 	}
+	
+	@Override
+	public List<Institucion> obtenerInstitucion() {
+		String sql = "SELECT DISTINCT ON (i.ins_nit) i.ins_nit, i.*, nj.*, s.*, ca.*, ccp.*, m.*, d.*, p.* "
+				+ "FROM general.institucion i "
+				+ "INNER JOIN general.naturaleza_juridica nj ON i.naj_codigo = nj.naj_codigo "
+				+ "INNER JOIN general.sector s ON i.sec_codigo = s.sec_codigo "
+				+ "INNER JOIN general.caracter_academico ca ON i.caa_codigo = ca.caa_codigo "
+				+ "INNER JOIN general.cabeceras_centros_poblados ccp ON i.ccp_divipola = ccp.ccp_divipola "
+				+ "INNER JOIN general.municipio m ON ccp.mun_divipola = m.mun_divipola "
+				+ "INNER JOIN general.departamento d ON m.dep_divipola = d.dep_divipola "
+				+ "INNER JOIN general.pais p ON d.pai_codigo = p.pai_codigo "
+				+ "ORDER BY i.ins_nit, i.ins_codigo DESC;";
+		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
+	}
 
 	@Override
 	public List<Institucion> obtenerListadoInstitucion() {
@@ -53,17 +68,19 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "inner join general.naturaleza_juridica nj on i.naj_codigo = nj.naj_codigo "
 				+ "inner join general.sector s on i.sec_codigo = s.sec_codigo "
 				+ "inner join general.caracter_academico ca on i.caa_codigo = ca.caa_codigo "
-				+ "inner join general.pais p on i.pai_codigo = p.pai_codigo "
-				+ "inner join general.departamento d on i.dep_divipola = d.dep_divipola "
-				+ "inner join general.municipio m on i.mun_divipola = m.mun_divipola order by i.ins_codigo desc";
+				+ "inner join general.cabeceras_centros_poblados ccp on i.ccp_divipola = ccp.ccp_divipola "
+				+ "inner join general.municipio m on ccp.mun_divipola = m.mun_divipola "
+				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
+				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo "
+				+ "order by i.ins_codigo desc";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
 
 	@Override
 	public int registrar(Institucion institucion) {
 		String sql = "INSERT INTO general.institucion "
-				+ "(ins_nit, ins_ies, ins_ies_padre, naj_codigo, sec_codigo, caa_codigo, ins_nombre, pai_codigo, dep_divipola, mun_divipola, ins_direccion, ins_telefono, ins_pagina_web, ins_norma_creacion, ins_fecha_norma) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "(ins_nit, ins_snies, ins_snies_padre, naj_codigo, sec_codigo, caa_codigo, ins_nombre, ccp_divipola, ins_direccion, ins_telefono, ins_pagina_web, ins_norma_creacion, ins_fecha_norma) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
 				institucion.getNit(),
@@ -73,9 +90,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				institucion.getSector().getCodigo(),
 				institucion.getCaracter().getCodigo(),
 				institucion.getNombre(),
-				institucion.getPais().getCodigo(),
-				institucion.getDepartamento().getDivipola(),
-				institucion.getMunicipio().getDivipola(),
+				institucion.getCcp().getDivipola(),
 				institucion.getDireccion(),
 				institucion.getTelefono(),
 				institucion.getUrl(),
@@ -94,9 +109,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 			parameter.addValue("sector", institucion.getSector().getCodigo());
 			parameter.addValue("caracter", institucion.getCaracter().getCodigo());
 			parameter.addValue("nombre", institucion.getNombre());
-			parameter.addValue("pais", institucion.getPais().getCodigo());
-			parameter.addValue("departamento", institucion.getDepartamento().getDivipola());
-			parameter.addValue("municipio", institucion.getMunicipio().getDivipola());
+			parameter.addValue("ccp", institucion.getCcp().getDivipola());
 			parameter.addValue("direccion", institucion.getDireccion());
 			parameter.addValue("telefono", institucion.getTelefono());
 			parameter.addValue("url", institucion.getUrl());
@@ -118,7 +131,5 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
 
 }

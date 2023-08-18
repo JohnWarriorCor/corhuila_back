@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.corhuila.corhuila.dao.IUbicacionDao;
 import com.corhuila.corhuila.service.IUbicacionService;
+import com.corhuila.corhuila.entities.CabecerasCentrosPoblados;
 import com.corhuila.corhuila.entities.Departamento;
 import com.corhuila.corhuila.entities.Municipio;
 import com.corhuila.corhuila.entities.Pais;
@@ -42,6 +43,13 @@ public class UbicacionServiceImpl implements IUbicacionService{
 	public List<Municipio> obtenerMunicipiosPorDepartamento(String depCodigo) {
 		
 		return ubicacionDao.obtenerMunicipiosPorDepartamento(depCodigo);
+		
+	}
+
+	@Override
+	public List<CabecerasCentrosPoblados> obtenerCcpPorMunicipio(String munCodigo) {
+		
+		return ubicacionDao.obtenerCcpPorMunicipio(munCodigo);
 		
 	}
 

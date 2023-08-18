@@ -39,6 +39,11 @@ public class InstitucionServiceImp implements IInstitucionService{
 	public List<Institucion> obtenerListadoInstitucion() {
 		return institucionDao.obtenerListadoInstitucion();
 	}
+	
+	@Override
+	public List<Institucion> obtenerInstitucion() {
+		return institucionDao.obtenerInstitucion();
+	}
 
 	@Override
 	public int registrar(Institucion institucion) {

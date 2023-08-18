@@ -8,10 +8,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.corhuila.corhuila.dao.IUbicacionDao;
+import com.corhuila.corhuila.resultSetExtractor.CabecerasCentrosPobladosSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.DepartamentoSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.MunicipioSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.PaisSetExtractor;
 import com.corhuila.corhuila.entities.Pais;
+import com.corhuila.corhuila.entities.CabecerasCentrosPoblados;
 import com.corhuila.corhuila.entities.Departamento;
 import com.corhuila.corhuila.entities.Municipio;
 
@@ -57,6 +59,17 @@ public class UbicacionDaoImpl implements IUbicacionDao{
 				+ "where m.dep_divipola = '" + depCodigo + "'";
 
 		return jdbcTemplate.query(sql, new MunicipioSetExtractor());
+	}
+
+	@Override
+	public List<CabecerasCentrosPoblados> obtenerCcpPorMunicipio(String munCodigo) {
+		String sql = "select * from general.cabeceras_centros_poblados ccp "
+				+ "inner join general.municipio m on ccp.mun_divipola = m.mun_divipola "
+				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
+				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo "
+				+ "where ccp.mun_divipola = '" + munCodigo + "'";
+
+		return jdbcTemplate.query(sql, new CabecerasCentrosPobladosSetExtractor());
 	}
 
 }

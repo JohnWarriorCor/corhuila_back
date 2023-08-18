@@ -10,10 +10,14 @@ import com.corhuila.corhuila.entities.Sector;
 public interface IInstitucionDao {
 	
 	public List<CaracterAcademico> obtenerListadoCaracterAcademico();
+	
 	public List<NaturalezaJuridica> obtenerListadoNaturalezaJuridica();
+	
 	public List<Sector> obtenerListadoSector();
 	
 	public List<Institucion> obtenerListadoInstitucion();
+	
+	public List<Institucion> obtenerInstitucion();
 	
 	public int registrar(Institucion institucion);
 	

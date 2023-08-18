@@ -8,15 +8,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Institucion implements Serializable {
+public class Sede implements Serializable {
 	
 	private int codigo;
 	private String nit;
-	private int ies;
-	private int iesPadre;
-	private NaturalezaJuridica naturaleza;
-	private Sector sector;
-	private CaracterAcademico caracter;
 	private String nombre;
 	private Pais pais;
 	private Departamento departamento;
@@ -24,9 +19,8 @@ public class Institucion implements Serializable {
 	private CabecerasCentrosPoblados ccp;
 	private String direccion;
 	private String telefono;
-	private String url;
-	private String norma;
-	private Date fechaNorma;
+	private SedeTipo sedeTipo;
+	private Date fechaCreacion;
 	private int estado;
 	
 	private static final long serialVersionUID = 1L;

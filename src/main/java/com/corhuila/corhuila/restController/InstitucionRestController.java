@@ -51,6 +51,13 @@ public class InstitucionRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-institucion")
+	public List<Institucion> obtenerInstitucion() {
+		
+		return institucionService.obtenerInstitucion();
+		
+	}
+	
 	@PostMapping(path = "registrar-institucion")
 	public int registrar(@RequestBody Institucion institucion) {
 
