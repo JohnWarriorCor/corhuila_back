@@ -11,10 +11,13 @@ import com.corhuila.corhuila.entities.GrupoEtnico;
 import com.corhuila.corhuila.entities.GrupoSanguineo;
 import com.corhuila.corhuila.entities.PersonaDiscapacidad;
 import com.corhuila.corhuila.entities.PuebloIndigena;
+import com.corhuila.corhuila.entities.Persona;
 import com.corhuila.corhuila.entities.SexoBiologico;
 import com.corhuila.corhuila.entities.TalentoExcepcional;
 
 public interface IPersonaDao {
+	
+	public List<Persona> obtenerPersonas();
 	
 	public List<TipoIdentificacion> obtenerTipoId();
 	
@@ -37,5 +40,9 @@ public interface IPersonaDao {
 	public List<PuebloIndigena> obtenerPueblosIndigenas();
 	
 	public List<TalentoExcepcional> obtenerTalentosExcepcionales();
+	
+	public int registrar(Persona persona);
+	
+	int actualizar(Persona persona);
 
 }

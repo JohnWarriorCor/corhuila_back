@@ -13,9 +13,15 @@ public interface IUbicacionDao {
 	
 	public List<Pais> obtenerPaises();
 	
+	public List<Departamento> obtenerDepartamentos();
+	
 	public List<Departamento> obtenerDepartamentosPorPais(int paiCodigo);
 	
+	public List<Municipio> obtenerMunicipios();
+	
 	public List<Municipio> obtenerMunicipiosPorDepartamento(String depCodigo);
+	
+	public List<CabecerasCentrosPoblados> obtenerCcp();
 	
 	public List<CabecerasCentrosPoblados> obtenerCcpPorMunicipio(String munCodigo);
 

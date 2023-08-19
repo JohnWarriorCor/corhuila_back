@@ -55,5 +55,28 @@ public class UbicacionRestController {
 		return ubicacionService.obtenerCcpPorMunicipio(munCodigo);
 		
 	}
+	
+	@GetMapping(path = "obtener-departamentos")
+	public List<Departamento> obtenerDepartamentos() {
+		
+		return ubicacionService.obtenerDepartamentos();
+		
+	}
+	
+	
+	@GetMapping(path = "obtener-municipios")
+	public List<Municipio> obtenerMunicipios() {
+		
+		return ubicacionService.obtenerMunicipios();
+		
+	}
+	
+	
+	@GetMapping(path = "obtener-ccp")
+	public List<CabecerasCentrosPoblados> obtenerCcp() {
+		
+		return ubicacionService.obtenerCcp();
+		
+	}
 
 }

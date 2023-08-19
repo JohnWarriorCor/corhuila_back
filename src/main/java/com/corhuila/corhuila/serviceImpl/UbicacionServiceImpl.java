@@ -53,4 +53,21 @@ public class UbicacionServiceImpl implements IUbicacionService{
 		
 	}
 
+	@Override
+	public List<Departamento> obtenerDepartamentos() {
+		
+		return ubicacionDao.obtenerDepartamentos();
+		
+	}
+
+	@Override
+	public List<Municipio> obtenerMunicipios() {
+		return ubicacionDao.obtenerMunicipios();
+	}
+
+	@Override
+	public List<CabecerasCentrosPoblados> obtenerCcp() {
+		return ubicacionDao.obtenerCcp();
+	}
+
 }

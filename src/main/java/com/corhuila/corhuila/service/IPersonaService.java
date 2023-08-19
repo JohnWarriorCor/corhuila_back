@@ -8,6 +8,7 @@ import com.corhuila.corhuila.entities.EstadoCivil;
 import com.corhuila.corhuila.entities.Estrato;
 import com.corhuila.corhuila.entities.GrupoEtnico;
 import com.corhuila.corhuila.entities.GrupoSanguineo;
+import com.corhuila.corhuila.entities.Persona;
 import com.corhuila.corhuila.entities.PersonaDiscapacidad;
 import com.corhuila.corhuila.entities.PuebloIndigena;
 import com.corhuila.corhuila.entities.SexoBiologico;
@@ -15,6 +16,8 @@ import com.corhuila.corhuila.entities.TalentoExcepcional;
 import com.corhuila.corhuila.entities.TipoIdentificacion;
 
 public interface IPersonaService {
+	
+	public List<Persona> obtenerPersonas();
 	
 	public List<TipoIdentificacion> obtenerTipoId();
 	
@@ -37,5 +40,9 @@ public interface IPersonaService {
 	public List<PuebloIndigena> obtenerPueblosIndigenas();
 	
 	public List<TalentoExcepcional> obtenerTalentosExcepcionales();
+	
+	public int registrar(Persona persona);
+	
+	int actualizar(Persona persona);
 
 }

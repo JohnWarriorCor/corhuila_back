@@ -18,7 +18,7 @@ public class UsuarioRowMapper implements RowMapper<Usuario>{
 		user.setRole(rs.getString("usu_estado"));
 		user.setUsername(rs.getString("usu_nombre"));
 		user.setState(rs.getInt("usu_estado") > 0 ? true : false);
-		user.setPersona(new PersonaRowMapper().mapRow(rs, rowNum));
+		user.setPersona(new PersonaUsuarioRowMapper().mapRow(rs, rowNum));
 		return user;
 	}
 

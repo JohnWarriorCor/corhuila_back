@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +16,7 @@ import com.corhuila.corhuila.entities.EstadoCivil;
 import com.corhuila.corhuila.entities.Estrato;
 import com.corhuila.corhuila.entities.GrupoEtnico;
 import com.corhuila.corhuila.entities.GrupoSanguineo;
+import com.corhuila.corhuila.entities.Persona;
 import com.corhuila.corhuila.entities.PersonaDiscapacidad;
 import com.corhuila.corhuila.entities.PuebloIndigena;
 import com.corhuila.corhuila.entities.SexoBiologico;
@@ -26,6 +30,13 @@ public class PersonaRestController {
 	
 	@Autowired
 	IPersonaService personaService;
+	
+	@GetMapping(path = "obtener-personas")
+	public List<Persona> obtenerPersonas() {
+		
+		return personaService.obtenerPersonas();
+		
+	}
 	
 	@GetMapping(path = "obtener-tipo-id")
 	public List<TipoIdentificacion> obtenerPaisLocal() {
@@ -101,6 +112,20 @@ public class PersonaRestController {
 	public List<TalentoExcepcional> obtenerTalentosExcepcionales() {
 		
 		return personaService.obtenerTalentosExcepcionales();
+		
+	}
+	
+	@PostMapping(path = "registrar-persona")
+	public int registrar(@RequestBody Persona persona) {
+
+		return personaService.registrar(persona);
+		
+	}
+	
+	@PutMapping(path = "actualizar-persona")
+	public int actualizar(@RequestBody Persona persona) {
+		
+		return personaService.actualizar(persona);
 		
 	}
 

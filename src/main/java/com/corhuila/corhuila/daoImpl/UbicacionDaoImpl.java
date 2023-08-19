@@ -72,5 +72,34 @@ public class UbicacionDaoImpl implements IUbicacionDao{
 		return jdbcTemplate.query(sql, new CabecerasCentrosPobladosSetExtractor());
 	}
 
+	@Override
+	public List<Departamento> obtenerDepartamentos() {
+		
+		String sql = "select * from general.departamento d ";
+
+		return jdbcTemplate.query(sql, new DepartamentoSetExtractor());
+		
+	}
+
+	@Override
+	public List<Municipio> obtenerMunicipios() {
+		
+		String sql = "select * from general.municipio m "
+				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
+				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo ";
+
+		return jdbcTemplate.query(sql, new MunicipioSetExtractor());
+		
+	}
+
+	@Override
+	public List<CabecerasCentrosPoblados> obtenerCcp() {
+		
+		String sql = "select * from general.cabeceras_centros_poblados ccp ";
+		
+		return jdbcTemplate.query(sql, new CabecerasCentrosPobladosSetExtractor());
+		
+	}
+
 }
 

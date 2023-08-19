@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 
 	private boolean state;
 
-	private Persona persona;
+	private PersonaUsuario persona;
 
 	private String role;
 

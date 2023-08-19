@@ -13,6 +13,12 @@ public interface IUbicacionService {
 	
 	public List<Pais> obtenerPaises();
 	
+	public List<Departamento> obtenerDepartamentos();
+	
+	public List<Municipio> obtenerMunicipios();
+	
+	public List<CabecerasCentrosPoblados> obtenerCcp();
+	
 	public List<Departamento> obtenerDepartamentosPorPais(int paiCodigo);
 	
 	public List<Municipio> obtenerMunicipiosPorDepartamento(String depCodigo);

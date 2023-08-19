@@ -12,6 +12,7 @@ import com.corhuila.corhuila.entities.EstadoCivil;
 import com.corhuila.corhuila.entities.Estrato;
 import com.corhuila.corhuila.entities.GrupoEtnico;
 import com.corhuila.corhuila.entities.GrupoSanguineo;
+import com.corhuila.corhuila.entities.Persona;
 import com.corhuila.corhuila.entities.PersonaDiscapacidad;
 import com.corhuila.corhuila.entities.PuebloIndigena;
 import com.corhuila.corhuila.entities.SexoBiologico;
@@ -98,6 +99,27 @@ public class PersonaServiceImpl implements IPersonaService{
 	public List<TalentoExcepcional> obtenerTalentosExcepcionales() {
 		
 		return personaDao.obtenerTalentosExcepcionales();
+		
+	}
+
+	@Override
+	public List<Persona> obtenerPersonas() {
+		
+		return personaDao.obtenerPersonas();
+		
+	}
+
+	@Override
+	public int registrar(Persona persona) {
+		
+		return personaDao.registrar(persona);
+		
+	}
+
+	@Override
+	public int actualizar(Persona persona) {
+		
+		return personaDao.actualizar(persona);
 		
 	}
 }
