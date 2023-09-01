@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.corhuila.corhuila.entities.Facultad;
 
-	public interface IFacultadService {
+public interface IFacultadService {
 	
 	public List<Facultad> obtenerListadoFacultades();
 	
