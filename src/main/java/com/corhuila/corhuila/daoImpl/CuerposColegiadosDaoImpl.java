@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.corhuila.corhuila.dao.ICuerposColegiadosDao;
 import com.corhuila.corhuila.entities.CuerposColegiados;
+import com.corhuila.corhuila.entities.Funciones;
 import com.corhuila.corhuila.resultSetExtractor.CuerposColegiadosSetExtractor;
+import com.corhuila.corhuila.resultSetExtractor.FuncionesSetExtractor;
 
 @Repository
 public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
@@ -26,8 +28,18 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 	@Override
 	public List<CuerposColegiados> obtenerListadoCuerposColegiados() {
 		
-		String sql = "select * from general.cuerpos_colegiados cc where cc.cuc_estado = 1 ";
+		String sql = "select * from general.cuerpos_colegiados cc "
+				+ "inner join general.funciones f on cc.fun_codigo = f.fun_codigo "
+				+ "where cc.cuc_estado = 1 ";
 		return jdbcTemplate.query(sql, new CuerposColegiadosSetExtractor());
+		
+	}
+	
+	@Override
+	public List<Funciones> obtenerListadoFunciones() {
+		
+		String sql = "select * from general.funciones f where f.fun_estado = 1";
+		return jdbcTemplate.query(sql, new FuncionesSetExtractor());
 		
 	}
 
@@ -35,8 +47,8 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 	public int registrar(CuerposColegiados cuerposColegiados) {
 		
 		String sql = "INSERT INTO general.cuerpos_colegiados "
-				+ "(cuc_nombre, cuc_nombre_corto, cuc_numero_norma, cuc_nombre_norma, cuc_fecha_norma, cuc_cantidad_miembros) "
-				+ "VALUES(?, ?, ?, ?, ?, ?);";
+				+ "(cuc_nombre, cuc_nombre_corto, cuc_numero_norma, cuc_nombre_norma, cuc_fecha_norma, cuc_cantidad_miembros, fun_codigo) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?);";
 		
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
 				cuerposColegiados.getNombre(),
@@ -45,6 +57,7 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 				cuerposColegiados.getNombreNorma(),
 				cuerposColegiados.getFechaNorma(),
 				cuerposColegiados.getCantidadMiembros(),
+				cuerposColegiados.getFunciones().getCodigo(),
 				});
 		
 		try {
@@ -57,6 +70,7 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 			parameter.addValue("nombreNorma", cuerposColegiados.getNombreNorma());
 			parameter.addValue("fechaNorma", cuerposColegiados.getFechaNorma());
 			parameter.addValue("cantidadMiembros", cuerposColegiados.getCantidadMiembros());
+			parameter.addValue("funciones", cuerposColegiados.getFunciones().getCodigo());
 			
 			return result;
 
@@ -72,7 +86,7 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 	public int actualizar(CuerposColegiados cuerposColegiados) {
 		
 		String sql = "UPDATE general.cuerpos_colegiados "
-				+ "SET cuc_nombre=?, cuc_nombre_corto=?, cuc_numero_norma=?, cuc_nombre_norma=?, cuc_fecha_norma=?, cuc_cantidad_miembros=?, cuc_estado=? "
+				+ "SET cuc_nombre=?, cuc_nombre_corto=?, cuc_numero_norma=?, cuc_nombre_norma=?, cuc_fecha_norma=?, cuc_cantidad_miembros=?, cuc_estado=?, fun_codigo=? "
 				+ "WHERE cuc_codigo = ? ;";
 
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
@@ -82,6 +96,7 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 				cuerposColegiados.getNombreNorma(),
 				cuerposColegiados.getFechaNorma(),
 				cuerposColegiados.getCantidadMiembros(),
+				cuerposColegiados.getFunciones().getCodigo(),
 				cuerposColegiados.getEstado(),
 				cuerposColegiados.getCodigo(),
 				});
@@ -95,6 +110,7 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 			parameter.addValue("nombreNorma", cuerposColegiados.getNombreNorma());
 			parameter.addValue("fechaNorma", cuerposColegiados.getFechaNorma());
 			parameter.addValue("cantidadMiembros", cuerposColegiados.getCantidadMiembros());
+			parameter.addValue("funciones", cuerposColegiados.getFunciones().getCodigo());
 			parameter.addValue("estado", cuerposColegiados.getEstado());
 			parameter.addValue("codigo", cuerposColegiados.getCodigo());
 
@@ -108,4 +124,5 @@ public class CuerposColegiadosDaoImpl implements ICuerposColegiadosDao{
 		}
 		
 	}
+	
 }

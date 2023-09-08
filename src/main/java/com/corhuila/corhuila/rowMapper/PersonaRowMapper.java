@@ -19,7 +19,7 @@ public class PersonaRowMapper implements RowMapper<Persona>{
         persona.setNombre(rs.getString("per_nombre"));
         persona.setApellido(rs.getString("per_apellido"));
         persona.setSexoBiologico(new SexoBiologicoRowMapper().mapRow(rs, rowNum));
-        persona.setLugarExpedición(rs.getString("per_lugar_expedicion"));
+        persona.setLugarExpedicion(rs.getString("per_lugar_expedicion"));
         persona.setFechaExpedicion(rs.getDate("per_fecha_expedicion"));
         persona.setFechaNacimiento(rs.getDate("per_fecha_nacimiento"));
         persona.setDireccion(rs.getString("per_direccion_residencia"));

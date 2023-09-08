@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.corhuila.corhuila.entities.CuerposColegiados;
+import com.corhuila.corhuila.entities.Funciones;
 import com.corhuila.corhuila.service.ICuerposColegiadosService;
 
 @RestController
@@ -24,6 +25,13 @@ public class CuerposColegiadosRestController {
 	public List<CuerposColegiados> obtenerListadoCuerposColegiados() {
 		
 		return cuerposColegiadosService.obtenerListadoCuerposColegiados();
+		
+	}
+	
+	@GetMapping(path = "obtener-listado-funciones")
+	public List<Funciones> obtenerListadoFunciones() {
+		
+		return cuerposColegiadosService.obtenerListadoFunciones();
 		
 	}
 	

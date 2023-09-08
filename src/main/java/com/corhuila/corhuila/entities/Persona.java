@@ -24,7 +24,7 @@ public class Persona implements Serializable {
 	
 	private SexoBiologico sexoBiologico;
 	
-	private String lugarExpedición;
+	private String lugarExpedicion;
 	
 	private Date fechaExpedicion;
 	

@@ -22,6 +22,8 @@ public class CuerposColegiados implements Serializable {
 	
 	private Date fechaNorma;
 	
+	private Funciones funciones;
+	
 	private Date fechaCreacion;
 	
 	private int cantidadMiembros;

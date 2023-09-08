@@ -18,6 +18,7 @@ public class CuerposColegiadosRowMapper implements RowMapper<CuerposColegiados>{
 		cuerposColegiados.setNumeroNorma(rs.getInt("cuc_numero_norma"));
 		cuerposColegiados.setNombreNorma(rs.getString("cuc_nombre_norma"));
 		cuerposColegiados.setFechaNorma(rs.getDate("cuc_fecha_norma"));
+		cuerposColegiados.setFunciones(new FuncionesRowMapper().mapRow(rs, rowNum));
 		cuerposColegiados.setFechaCreacion(rs.getDate("cuc_fecha_creacion"));
 		cuerposColegiados.setCantidadMiembros(rs.getInt("cuc_cantidad_miembros"));
 		cuerposColegiados.setEstado(rs.getInt("cuc_estado"));

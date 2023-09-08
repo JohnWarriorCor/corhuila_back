@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.corhuila.corhuila.dao.ICuerposColegiadosDao;
 import com.corhuila.corhuila.entities.CuerposColegiados;
+import com.corhuila.corhuila.entities.Funciones;
 import com.corhuila.corhuila.service.ICuerposColegiadosService;
 
 @Service
@@ -19,6 +20,13 @@ public class CuerposColegiadosServiceImpl implements ICuerposColegiadosService{
 	public List<CuerposColegiados> obtenerListadoCuerposColegiados() {
 		
 		return cuerposColegiadosDao.obtenerListadoCuerposColegiados();
+		
+	}
+	
+	@Override
+	public List<Funciones> obtenerListadoFunciones() {
+		
+		return cuerposColegiadosDao.obtenerListadoFunciones();
 		
 	}
 
@@ -35,4 +43,5 @@ public class CuerposColegiadosServiceImpl implements ICuerposColegiadosService{
 		return cuerposColegiadosDao.actualizar(cuerposColegiados);
 		
 	}
+
 }

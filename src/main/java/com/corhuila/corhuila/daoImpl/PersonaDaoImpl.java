@@ -166,7 +166,7 @@ public class PersonaDaoImpl implements IPersonaDao{
 		        persona.getApellido(),
 		        persona.getNombre(),
 		        persona.getSexoBiologico().getCodigo(),
-		        persona.getLugarExpedición(),
+		        persona.getLugarExpedicion(),
 		        persona.getFechaExpedicion(),
 		        persona.getFechaNacimiento(),
 		        persona.getDireccion(),
@@ -204,7 +204,7 @@ public class PersonaDaoImpl implements IPersonaDao{
 			parameter.addValue("apellido", persona.getApellido());
 			parameter.addValue("nombre", persona.getNombre());
 			parameter.addValue("sexoBiologico", persona.getSexoBiologico().getCodigo());
-			parameter.addValue("lugarExpedición", persona.getLugarExpedición());
+			parameter.addValue("lugarExpedición", persona.getLugarExpedicion());
 			parameter.addValue("fechaExpedicion", persona.getFechaExpedicion());
 			parameter.addValue("fechaNacimiento", persona.getFechaNacimiento());
 			parameter.addValue("direccion", persona.getDireccion());
@@ -255,7 +255,7 @@ public class PersonaDaoImpl implements IPersonaDao{
 		        persona.getApellido(),
 		        persona.getNombre(),
 		        persona.getSexoBiologico().getCodigo(),
-		        persona.getLugarExpedición(),
+		        persona.getLugarExpedicion(),
 		        persona.getFechaExpedicion(),
 		        persona.getFechaNacimiento(),
 		        persona.getDireccion(),
@@ -294,7 +294,7 @@ public class PersonaDaoImpl implements IPersonaDao{
 			parameter.addValue("apellido", persona.getApellido());
 			parameter.addValue("nombre", persona.getNombre());
 			parameter.addValue("sexoBiologico", persona.getSexoBiologico().getCodigo());
-			parameter.addValue("lugarExpedición", persona.getLugarExpedición());
+			parameter.addValue("lugarExpedición", persona.getLugarExpedicion());
 			parameter.addValue("fechaExpedicion", persona.getFechaExpedicion());
 			parameter.addValue("fechaNacimiento", persona.getFechaNacimiento());
 			parameter.addValue("direccion", persona.getDireccion());
