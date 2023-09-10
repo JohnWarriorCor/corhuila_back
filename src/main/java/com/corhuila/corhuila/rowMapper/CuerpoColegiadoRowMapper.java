@@ -5,20 +5,19 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.corhuila.corhuila.entities.CuerposColegiados;
+import com.corhuila.corhuila.entities.CuerpoColegiado;
 
-public class CuerposColegiadosRowMapper implements RowMapper<CuerposColegiados>{
+public class CuerpoColegiadoRowMapper implements RowMapper<CuerpoColegiado>{
 
 	@Override
-	public CuerposColegiados mapRow(ResultSet rs, int rowNum) throws SQLException {
-		CuerposColegiados cuerposColegiados = new CuerposColegiados();
+	public CuerpoColegiado mapRow(ResultSet rs, int rowNum) throws SQLException {
+		CuerpoColegiado cuerposColegiados = new CuerpoColegiado();
 		cuerposColegiados.setCodigo(rs.getInt("cuc_codigo"));
 		cuerposColegiados.setNombre(rs.getString("cuc_nombre"));
 		cuerposColegiados.setNombreCorto(rs.getString("cuc_nombre_corto"));
 		cuerposColegiados.setNumeroNorma(rs.getInt("cuc_numero_norma"));
 		cuerposColegiados.setNombreNorma(rs.getString("cuc_nombre_norma"));
 		cuerposColegiados.setFechaNorma(rs.getDate("cuc_fecha_norma"));
-		cuerposColegiados.setFunciones(new FuncionesRowMapper().mapRow(rs, rowNum));
 		cuerposColegiados.setFechaCreacion(rs.getDate("cuc_fecha_creacion"));
 		cuerposColegiados.setCantidadMiembros(rs.getInt("cuc_cantidad_miembros"));
 		cuerposColegiados.setEstado(rs.getInt("cuc_estado"));

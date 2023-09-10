@@ -1,0 +1,61 @@
+package com.corhuila.corhuila.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.corhuila.corhuila.dao.ICuerpoColegiadoDao;
+import com.corhuila.corhuila.entities.CuerpoColegiado;
+import com.corhuila.corhuila.entities.FuncionesCuerpoColegiado;
+import com.corhuila.corhuila.service.ICuerpoColegiadoService;
+
+@Service
+public class CuerpoColegiadoServiceImpl implements ICuerpoColegiadoService{
+	
+	@Autowired
+	private ICuerpoColegiadoDao cuerposColegiadosDao;
+
+	@Override
+	public List<CuerpoColegiado> obtenerListadoCuerposColegiados() {
+		
+		return cuerposColegiadosDao.obtenerListadoCuerposColegiados();
+		
+	}
+	
+	@Override
+	public List<FuncionesCuerpoColegiado> obtenerListadoFunciones(int codigoCuerpoColegiado) {
+		
+		return cuerposColegiadosDao.obtenerListadoFunciones(codigoCuerpoColegiado);
+		
+	}
+
+	@Override
+	public int registrarCuerpoColegiado(CuerpoColegiado cuerposColegiados) {
+		
+		return cuerposColegiadosDao.registrarCuerpoColegiado(cuerposColegiados);
+		
+	}
+
+	@Override
+	public int actualizarCuerpoColegiado(CuerpoColegiado cuerposColegiados) {
+		
+		return cuerposColegiadosDao.actualizarCuerpoColegiado(cuerposColegiados);
+		
+	}
+
+	@Override
+	public int registrarFuncion(FuncionesCuerpoColegiado funcion) {
+		
+		return cuerposColegiadosDao.registrarFuncion(funcion);
+		
+	}
+
+	@Override
+	public int actualizarFuncion(FuncionesCuerpoColegiado funcion) {
+		
+		return cuerposColegiadosDao.actualizarFuncion(funcion);
+		
+	}
+
+}

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CuerposColegiados implements Serializable {
+public class CuerpoColegiado implements Serializable {
 
 	private int codigo;
 
@@ -21,8 +21,6 @@ public class CuerposColegiados implements Serializable {
 	private String nombreNorma;
 	
 	private Date fechaNorma;
-	
-	private Funciones funciones;
 	
 	private Date fechaCreacion;
 	
