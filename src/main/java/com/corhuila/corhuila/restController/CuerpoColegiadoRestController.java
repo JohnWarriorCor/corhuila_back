@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.corhuila.corhuila.entities.CuerpoColegiado;
 import com.corhuila.corhuila.entities.FuncionesCuerpoColegiado;
+import com.corhuila.corhuila.entities.IntegranteCuerpoColegiado;
 import com.corhuila.corhuila.service.ICuerpoColegiadoService;
 
 @RestController
@@ -36,6 +37,20 @@ public class CuerpoColegiadoRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-listado-integrantes-cuerpo-colegiado")
+	public List<IntegranteCuerpoColegiado> obtenerListadoIntegrantesCuerpoColegiado() {
+		
+		return cuerposColegiadosService.obtenerListadoIntegrantesCuerpoColegiado();
+		
+	}
+	
+	@GetMapping(path = "obtener-listado-integrantes/{codigoCuerpoColegiado}")
+	public List<IntegranteCuerpoColegiado> obtenerListadoIntegrantesCuerpoColegiadoCodigo(@PathVariable int codigoCuerpoColegiado) {
+		
+		return cuerposColegiadosService.obtenerListadoIntegrantesCuerpoColegiadoCodigo(codigoCuerpoColegiado);
+		
+	}
+	
 	@PostMapping(path = "registrar-cuerpos-colegiados")
 	public int registrarCuerpoColegiado(@RequestBody CuerpoColegiado cuerposColegiados) {
 
@@ -50,17 +65,17 @@ public class CuerpoColegiadoRestController {
 		
 	}
 	
-	@PostMapping(path = "registrar-funciones-cuerpo-colegiado")
-	public int registrarFuncion(@RequestBody FuncionesCuerpoColegiado funcion) {
+	@PostMapping(path = "registrar-integrante")
+	public int registrarIntegrante(@RequestBody IntegranteCuerpoColegiado integrante) {
 
-		return cuerposColegiadosService.registrarFuncion(funcion);
+		return cuerposColegiadosService.registrarIntegrante(integrante);
 		
 	}
 	
-	@PutMapping(path = "actualizar-funciones-cuerpo-colegiado")
-	public int actualizarFuncion(@RequestBody FuncionesCuerpoColegiado funcion) {
+	@PutMapping(path = "actualizar-integrante")
+	public int actualizarIntegrante(@RequestBody IntegranteCuerpoColegiado integrante) {
 		
-		return cuerposColegiadosService.actualizarFuncion(funcion);
+		return cuerposColegiadosService.actualizarIntegrante(integrante);
 		
 	}
 

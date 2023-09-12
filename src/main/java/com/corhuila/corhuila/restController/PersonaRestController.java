@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,13 @@ public class PersonaRestController {
 	public List<Persona> obtenerPersonas() {
 		
 		return personaService.obtenerPersonas();
+		
+	}
+	
+	@GetMapping(path = "obtener-persona-identificacion/{id}")
+	public List<Persona> obtenerPersonaIdentificacion(@PathVariable String id) {
+		
+		return personaService.obtenerPersonaIdentificacion(id);
 		
 	}
 	

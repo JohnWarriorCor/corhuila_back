@@ -25,6 +25,13 @@ public class PersonaServiceImpl implements IPersonaService{
 	
 	@Autowired
 	private IPersonaDao personaDao;
+	
+	@Override
+	public List<Persona> obtenerPersonaIdentificacion(String id) {
+		
+		return personaDao.obtenerPersonaIdentificacion(id);
+		
+	}
 
 	@Override
 	public List<TipoIdentificacion> obtenerTipoId() {
@@ -122,4 +129,5 @@ public class PersonaServiceImpl implements IPersonaService{
 		return personaDao.actualizar(persona);
 		
 	}
+
 }

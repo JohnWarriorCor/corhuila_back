@@ -19,6 +19,8 @@ public interface IPersonaService {
 	
 	public List<Persona> obtenerPersonas();
 	
+	public List<Persona> obtenerPersonaIdentificacion(String id);
+	
 	public List<TipoIdentificacion> obtenerTipoId();
 	
 	public List<SexoBiologico> obtenerSexoBiologico();

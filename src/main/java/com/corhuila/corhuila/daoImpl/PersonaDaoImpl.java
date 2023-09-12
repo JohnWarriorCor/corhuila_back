@@ -44,6 +44,26 @@ public class PersonaDaoImpl implements IPersonaDao{
 	@Autowired
 	@Qualifier("JDBCTemplateCorhuilaConsulta")
 	public JdbcTemplate jdbcTemplate;
+	
+	@Override
+	public List<Persona> obtenerPersonaIdentificacion(String id) {
+		
+		String sql = "select * from general.persona p "
+				+ "INNER JOIN general.tipo_identificacion ti on p.tii_codigo = ti.tii_codigo "
+				+ "INNER JOIN general.sexo_biologico sb on p.seb_codigo = sb.seb_codigo "
+				+ "INNER JOIN general.estado_civil ec on p.esc_codigo = ec.esc_codigo "
+				+ "INNER JOIN general.estrato e on p.est_codigo = e.est_codigo "
+				+ "INNER JOIN general.grupo_etnico ge on p.gre_codigo = ge.gre_codigo "
+				+ "INNER JOIN general.pueblo_indigena pui on p.pui_codigo = pui.pui_codigo "
+				+ "INNER JOIN general.comunidad_negra cn on p.con_codigo = cn.con_codigo "
+				+ "INNER JOIN general.persona_discapacidad pd on p.ped_codigo = pd.ped_codigo "
+				+ "INNER JOIN general.discapacidad_tipo dt on p.dit_codigo = dt.dit_codigo "
+				+ "INNER JOIN general.talento_excepcional te on p.tae_codigo = te.tae_codigo "
+				+ "INNER JOIN general.grupo_sanguineo gs on p.grs_codigo = gs.grs_codigo "
+				+ "where p.per_identificacion = '" + id + "' and p.per_estado = 1 ";
+		return jdbcTemplate.query(sql, new PersonaSetExtractor());
+		
+	}
 
 	@Override
 	public List<TipoIdentificacion> obtenerTipoId() {

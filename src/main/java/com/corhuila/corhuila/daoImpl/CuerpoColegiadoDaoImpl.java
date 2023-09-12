@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.corhuila.corhuila.dao.ICuerpoColegiadoDao;
 import com.corhuila.corhuila.entities.CuerpoColegiado;
 import com.corhuila.corhuila.entities.FuncionesCuerpoColegiado;
+import com.corhuila.corhuila.entities.IntegranteCuerpoColegiado;
 import com.corhuila.corhuila.resultSetExtractor.CuerpoColegiadoSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.FuncionesCuerpoColegiadoSetExtractor;
+import com.corhuila.corhuila.resultSetExtractor.IntegranteCuerpoColegiadoSetExtractor;
 
 @Repository
 public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
@@ -41,6 +43,33 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 				+ "left join general.cuerpos_colegiados cc on f.cuc_codigo = cc.cuc_codigo "
 				+ "where f.cuc_codigo = " + codigoCuerpoColegiado + " and f.fcc_estado = 1 ";
 		return jdbcTemplate.query(sql, new FuncionesCuerpoColegiadoSetExtractor());
+		
+	}
+	
+	@Override
+	public List<IntegranteCuerpoColegiado> obtenerListadoIntegrantesCuerpoColegiado() {
+		
+		String sql = "select * from general.integrante_cuerpo_colegiado icc "
+				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
+				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
+				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
+				+ "inner join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
+				+ "order by icc.icc_fecha_inicio ";
+		return jdbcTemplate.query(sql, new IntegranteCuerpoColegiadoSetExtractor());
+		
+	}
+
+	@Override
+	public List<IntegranteCuerpoColegiado> obtenerListadoIntegrantesCuerpoColegiadoCodigo(int codigoCuerpoColegiado) {
+		
+		String sql = "select * from general.integrante_cuerpo_colegiado icc "
+				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
+				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
+				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
+				+ "inner join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
+				+ "where icc.cuc_codigo = " + codigoCuerpoColegiado + " " 
+				+ "order by icc.icc_fecha_inicio ";
+		return jdbcTemplate.query(sql, new IntegranteCuerpoColegiadoSetExtractor());
 		
 	}
 
@@ -177,6 +206,93 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 			return 0;
 			
 		}
+	}
+
+	@Override
+	public int registrarIntegrante(IntegranteCuerpoColegiado integrante) {
+		
+		String sql = "INSERT INTO general.integrante_cuerpo_colegiado "
+				+ "(cuc_codigo, per_codigo, icc_norma, ust_codigo, mit_codigo, icc_fecha_inicio, icc_fecha_fin, icc_observacicon) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
+				integrante.getCuerpoColegiado().getCodigo(),
+				integrante.getPersonaCodigo(),
+				integrante.getCodigoNorma(),
+				integrante.getUsuarioTipo().getCodigo(),
+				integrante.getMiembroTipo().getCodigo(),
+				integrante.getFechaInicio(),
+				integrante.getFechaFin(),
+				integrante.getObservacion()
+				});
+		
+		try {
+
+			MapSqlParameterSource parameter = new MapSqlParameterSource();
+			
+			parameter.addValue("cuerpoColegiado", integrante.getCuerpoColegiado().getCodigo());
+			parameter.addValue("personaCodigo", integrante.getPersonaCodigo());
+			parameter.addValue("codigoNorma", integrante.getCodigoNorma());
+			parameter.addValue("usuarioTipo", integrante.getUsuarioTipo().getCodigo());
+			parameter.addValue("miembroTipo", integrante.getMiembroTipo().getCodigo());
+			parameter.addValue("fechaInicio", integrante.getFechaInicio());
+			parameter.addValue("fechaFin", integrante.getFechaFin());
+			parameter.addValue("observacion", integrante.getObservacion());
+			
+			return result;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return 0;
+			
+		}
+		
+	}
+
+	@Override
+	public int actualizarIntegrante(IntegranteCuerpoColegiado integrante) {
+		
+		String sql = "UPDATE general.integrante_cuerpo_colegiado "
+				+ "SET cuc_codigo= ?, per_codigo= ?, icc_norma= ?, ust_codigo= ?, mit_codigo= ?, icc_fecha_inicio= ?, icc_fecha_fin= ?, icc_observacicon= ?, icc_estado= ? "
+				+ "WHERE icc_codigo = ?;";
+
+		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
+				integrante.getCuerpoColegiado().getCodigo(),
+				integrante.getPersonaCodigo(),
+				integrante.getCodigoNorma(),
+				integrante.getUsuarioTipo().getCodigo(),
+				integrante.getMiembroTipo().getCodigo(),
+				integrante.getFechaInicio(),
+				integrante.getFechaFin(),
+				integrante.getObservacion(),
+				integrante.getEstado(),
+				integrante.getCodigo()
+				});
+
+		try {
+
+			MapSqlParameterSource parameter = new MapSqlParameterSource();
+			parameter.addValue("cuerpoColegiado", integrante.getCuerpoColegiado().getCodigo());
+			parameter.addValue("personaCodigo", integrante.getPersonaCodigo());
+			parameter.addValue("codigoNorma", integrante.getCodigoNorma());
+			parameter.addValue("usuarioTipo", integrante.getUsuarioTipo().getCodigo());
+			parameter.addValue("miembroTipo", integrante.getMiembroTipo().getCodigo());
+			parameter.addValue("fechaInicio", integrante.getFechaInicio());
+			parameter.addValue("fechaFin", integrante.getFechaFin());
+			parameter.addValue("observacion", integrante.getObservacion());
+			parameter.addValue("estado", integrante.getEstado());
+			parameter.addValue("codigo", integrante.getCodigo());
+
+			return result;
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return 0;
+			
+		}
+		
 	}
 	
 }
