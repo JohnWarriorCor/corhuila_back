@@ -51,6 +51,20 @@ public class CuerpoColegiadoRestController {
 		
 	}
 	
+	@PostMapping(path = "registrar-funciones-cuerpo-colegiado")
+	public int registrarFuncion(@RequestBody FuncionesCuerpoColegiado funcion) {
+
+		return cuerposColegiadosService.registrarFuncion(funcion);
+		
+	}
+	
+	@PutMapping(path = "actualizar-funciones-cuerpo-colegiado")
+	public int actualizarFuncion(@RequestBody FuncionesCuerpoColegiado funcion) {
+		
+		return cuerposColegiadosService.actualizarFuncion(funcion);
+		
+	}
+	
 	@PostMapping(path = "registrar-cuerpos-colegiados")
 	public int registrarCuerpoColegiado(@RequestBody CuerpoColegiado cuerposColegiados) {
 

@@ -53,7 +53,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
 				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
 				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
-				+ "inner join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
+				+ "left join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
 				+ "order by icc.icc_fecha_inicio ";
 		return jdbcTemplate.query(sql, new IntegranteCuerpoColegiadoSetExtractor());
 		
@@ -66,7 +66,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
 				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
 				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
-				+ "inner join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
+				+ "left join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
 				+ "where icc.cuc_codigo = " + codigoCuerpoColegiado + " " 
 				+ "order by icc.icc_fecha_inicio ";
 		return jdbcTemplate.query(sql, new IntegranteCuerpoColegiadoSetExtractor());
