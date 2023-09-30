@@ -15,6 +15,7 @@ import com.corhuila.corhuila.entities.IntegranteCuerpoColegiado;
 import com.corhuila.corhuila.resultSetExtractor.CuerpoColegiadoSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.FuncionesCuerpoColegiadoSetExtractor;
 import com.corhuila.corhuila.resultSetExtractor.IntegranteCuerpoColegiadoSetExtractor;
+import com.corhuila.corhuila.rowMapper.CuerpoColegiadoDisponibilidadRowMapper;
 
 @Repository
 public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
@@ -33,6 +34,17 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 		String sql = "select * from general.cuerpos_colegiados cc "
 				+ "where cc.cuc_estado = 1 ";
 		return jdbcTemplate.query(sql, new CuerpoColegiadoSetExtractor());
+		
+	}
+	
+	@Override
+	public List<CuerpoColegiado> obtenerCuerpoColegiadoDisponibilidad() {
+		
+		String sql = "select cc.cuc_codigo, cc.cuc_nombre, cc.cuc_cantidad_miembros, count(icc.icc_estado) as asignados from general.cuerpos_colegiados cc "
+				+ "left join general.integrante_cuerpo_colegiado icc on cc.cuc_codigo = icc.cuc_codigo and icc.icc_estado = 1 "
+				+ "where cc.cuc_estado = 1 "
+				+ "group by cc.cuc_nombre, cc.cuc_cantidad_miembros,cc.cuc_codigo";
+		return jdbcTemplate.query(sql, new CuerpoColegiadoDisponibilidadRowMapper());
 		
 	}
 	

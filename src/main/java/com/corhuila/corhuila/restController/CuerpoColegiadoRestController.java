@@ -30,6 +30,13 @@ public class CuerpoColegiadoRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-cuerpos-colegiados-disponibilidad")
+	public List<CuerpoColegiado> obtenerCuerpoColegiadoDisponibilidad() {
+		
+		return cuerposColegiadosService.obtenerCuerpoColegiadoDisponibilidad();
+		
+	}
+	
 	@GetMapping(path = "obtener-listado-funciones/{codigoCuerpoColegiado}")
 	public List<FuncionesCuerpoColegiado> obtenerListadoFunciones(@PathVariable int codigoCuerpoColegiado) {
 		

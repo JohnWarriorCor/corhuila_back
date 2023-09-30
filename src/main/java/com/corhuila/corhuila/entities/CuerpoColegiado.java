@@ -26,6 +26,8 @@ public class CuerpoColegiado implements Serializable {
 	
 	private int cantidadMiembros;
 	
+	private int disponibilidadMiembros;
+	
 	private int estado;
 	
 	private static final long serialVersionUID = 1L;

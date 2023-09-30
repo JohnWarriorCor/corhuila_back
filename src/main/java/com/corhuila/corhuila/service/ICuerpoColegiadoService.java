@@ -10,6 +10,8 @@ public interface ICuerpoColegiadoService {
 	
 	public List<CuerpoColegiado> obtenerListadoCuerposColegiados();
 	
+	public List<CuerpoColegiado> obtenerCuerpoColegiadoDisponibilidad();
+	
 	public List<FuncionesCuerpoColegiado> obtenerListadoFunciones(int codigoCuerpoColegiado);
 	
 	public List<IntegranteCuerpoColegiado> obtenerListadoIntegrantesCuerpoColegiado();

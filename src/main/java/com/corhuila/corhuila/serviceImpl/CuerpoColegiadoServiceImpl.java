@@ -25,6 +25,13 @@ public class CuerpoColegiadoServiceImpl implements ICuerpoColegiadoService{
 	}
 	
 	@Override
+	public List<CuerpoColegiado> obtenerCuerpoColegiadoDisponibilidad() {
+		
+		return cuerposColegiadosDao.obtenerCuerpoColegiadoDisponibilidad();
+		
+	}
+	
+	@Override
 	public List<FuncionesCuerpoColegiado> obtenerListadoFunciones(int codigoCuerpoColegiado) {
 		
 		return cuerposColegiadosDao.obtenerListadoFunciones(codigoCuerpoColegiado);
