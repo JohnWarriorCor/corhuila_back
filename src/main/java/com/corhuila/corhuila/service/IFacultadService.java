@@ -10,6 +10,6 @@ public interface IFacultadService {
 	
 	public int registrar(Facultad facultad);
 	
-	int actualizar(Facultad facultad);
+	public int actualizar(Facultad facultad);
 
 }

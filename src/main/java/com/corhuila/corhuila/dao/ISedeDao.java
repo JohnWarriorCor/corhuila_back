@@ -13,6 +13,6 @@ public interface ISedeDao {
 	
 	public int registrar(Sede sede);
 	
-	int actualizar(Sede sede);
+	public int actualizar(Sede sede);
 
 }
