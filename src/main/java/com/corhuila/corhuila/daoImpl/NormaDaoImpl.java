@@ -39,12 +39,15 @@ public class NormaDaoImpl implements INormaDao{
 	@Override
 	public List<Norma> obtenerNormas() {
 		
-		String sql = "select * from general.norma n "
+		String sql = "select *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre from general.norma n "
 				+ "inner join general.norma_entidad ne on n.noe_codigo = ne.noe_codigo "
 				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
 				+ "inner join general.norma_medio nm on n.nom_codigo = nm.nom_codigo "
 				+ "left join general.cuerpos_colegiados cc on n.cuc_codigo = cc.cuc_codigo "
 				+ "left join general.entidad_externa ee on n.ene_codigo = ee.ene_codigo "
+				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
+				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
+				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
 				+ "where n.nor_estado = 1";
 		return jdbcTemplate.query(sql, new NormaSetExtractor());
 		
@@ -53,12 +56,15 @@ public class NormaDaoImpl implements INormaDao{
 	@Override
 	public List<Norma> obtenerNormasNoDerogadas() {
 		
-		String sql = "SELECT * FROM general.norma n "
+		String sql = "SELECT *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre FROM general.norma n "
 				+ "inner join general.norma_entidad ne on n.noe_codigo = ne.noe_codigo "
 				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
 				+ "inner join general.norma_medio nm on n.nom_codigo = nm.nom_codigo "
 				+ "left join general.cuerpos_colegiados cc on n.cuc_codigo = cc.cuc_codigo "
 				+ "left join general.entidad_externa ee on n.ene_codigo = ee.ene_codigo "
+				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
+				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
+				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
 				+ "WHERE NOT EXISTS ( SELECT * FROM general.norma_deroga nd WHERE n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado != 0 ); ";
 		return jdbcTemplate.query(sql, new NormaSetExtractor());
 		
@@ -331,12 +337,15 @@ public class NormaDaoImpl implements INormaDao{
 	@Override
 	public List<Norma> obtenerNormaSinClasificar(int normaGrupoCodigo) {
 		
-		String sql = "SELECT * FROM general.norma n "
+		String sql = "SELECT *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre FROM general.norma n "
 				+ "inner join general.norma_entidad ne on n.noe_codigo = ne.noe_codigo "
 				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
 				+ "inner join general.norma_medio nm on n.nom_codigo = nm.nom_codigo "
 				+ "left join general.cuerpos_colegiados cc on n.cuc_codigo = cc.cuc_codigo "
 				+ "left join general.entidad_externa ee on n.ene_codigo = ee.ene_codigo "
+				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
+				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
+				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
 				+ "WHERE NOT EXISTS ( SELECT * FROM general.norma_clasificada nc WHERE n.nor_codigo = nc.nor_codigo and nc.noc_estado != 0 and nc.nog_codigo = " + normaGrupoCodigo + ");";
 		return jdbcTemplate.query(sql, new NormaSetExtractor());
 		
@@ -345,7 +354,7 @@ public class NormaDaoImpl implements INormaDao{
 	@Override
 	public List<NormaClasificacion> obtenerNormaClasificada(int normaGrupoCodigo) {
 		
-		String sql = "select * from general.norma_clasificada nc "
+		String sql = "select *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre from general.norma_clasificada nc "
 				+ "inner join general.norma n on nc.nor_codigo = n.nor_codigo "
 				+ "inner join general.norma_entidad ne on n.noe_codigo = ne.noe_codigo "
 				+ "inner join general.norma_grupo ng on nc.nog_codigo = ng.nog_codigo "
@@ -353,6 +362,9 @@ public class NormaDaoImpl implements INormaDao{
 				+ "inner join general.norma_medio nm on n.nom_codigo = nm.nom_codigo "
 				+ "left join general.cuerpos_colegiados cc on n.cuc_codigo = cc.cuc_codigo "
 				+ "left join general.entidad_externa ee on n.ene_codigo = ee.ene_codigo "
+				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
+				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
+				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
 				+ "where nc.noc_estado = 1 and nc.nog_codigo = " + normaGrupoCodigo;
 		return jdbcTemplate.query(sql, new NormaClasificacionSetExtractor());
 		

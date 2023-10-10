@@ -22,14 +22,17 @@ public class NormaRowMapper implements RowMapper<Norma>{
 		norma.setCuerpoColegiado(rs.getString("cuc_nombre"));
 		norma.setNormaTipoCodigo(rs.getInt("not_codigo"));
 		norma.setNormaTipo(rs.getString("not_nombre"));
-		norma.setNumero(rs.getInt("nor_numero"));
+		norma.setNumero(rs.getString("nor_numero"));
 		norma.setNombre(rs.getString("nor_nombre"));
+		norma.setNombreCompleto(rs.getString("not_nombre")+" "+rs.getString("nor_numero")+" "+rs.getString("nor_nombre"));
 		norma.setUrl(rs.getString("nor_url"));
 		norma.setMedioCodigo(rs.getInt("nom_codigo"));
 		norma.setMedio(rs.getString("nom_nombre"));
 		norma.setFechaExpedicion(rs.getDate("nor_fecha_expedicion"));
 		norma.setFechaVigencia(rs.getDate("nor_fecha_vigencia"));
 		norma.setDeroga(rs.getInt("nor_deroga"));
+		norma.setDerogaTipoCodigo(rs.getInt("det_codigo"));
+		norma.setDerogaPadre(rs.getString("deroga_padre"));
 		norma.setObservacion(rs.getString("nor_observacion"));
 		norma.setEstado(rs.getInt("nor_estado"));
 		return norma;

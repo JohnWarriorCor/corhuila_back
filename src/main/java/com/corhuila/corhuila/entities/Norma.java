@@ -20,14 +20,18 @@ public class Norma implements Serializable {
 	private String cuerpoColegiado;
 	private int normaTipoCodigo;
 	private String normaTipo;
-	private int numero;
+	private String numero;
 	private String nombre;
+	private String nombreCompleto;
+	private String nombreCompuesto;
 	private String url;
 	private int medioCodigo;
 	private String medio;
 	private Date fechaExpedicion;
 	private Date fechaVigencia;
 	private int deroga;
+	private int derogaTipoCodigo;
+	private String derogaPadre;
 	private String observacion;
 	private int estado;
 	
