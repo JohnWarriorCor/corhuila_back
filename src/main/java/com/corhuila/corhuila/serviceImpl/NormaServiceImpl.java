@@ -28,6 +28,13 @@ public class NormaServiceImpl implements INormaService{
 	}
 	
 	@Override
+	public List<Norma> obtenerNorma(int normaCodigo) {
+		
+		return normaDao.obtenerNorma(normaCodigo);
+		
+	}
+	
+	@Override
 	public List<Norma> obtenerNormasNoDerogadas() {
 		
 		return normaDao.obtenerNormasNoDerogadas();

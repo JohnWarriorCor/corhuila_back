@@ -33,6 +33,13 @@ public class NormaRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-norma/{normaCodigo}")
+	public List<Norma> obtenerNorma(@PathVariable int normaCodigo) {
+		
+		return normaService.obtenerNorma(normaCodigo);
+		
+	}
+	
 	@GetMapping(path = "obtener-normas-no-derogadas")
 	public List<Norma> obtenerNormasNoDerogadas() {
 		

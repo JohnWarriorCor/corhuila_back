@@ -54,6 +54,23 @@ public class NormaDaoImpl implements INormaDao{
 	}
 	
 	@Override
+	public List<Norma> obtenerNorma(int normaCodigo) {
+		
+		String sql = "select *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre from general.norma n "
+				+ "inner join general.norma_entidad ne on n.noe_codigo = ne.noe_codigo "
+				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
+				+ "inner join general.norma_medio nm on n.nom_codigo = nm.nom_codigo "
+				+ "left join general.cuerpos_colegiados cc on n.cuc_codigo = cc.cuc_codigo "
+				+ "left join general.entidad_externa ee on n.ene_codigo = ee.ene_codigo "
+				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
+				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
+				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
+				+ "where n.nor_estado = 1 and n.nor_codigo= " + normaCodigo;
+		return jdbcTemplate.query(sql, new NormaSetExtractor());
+		
+	}
+	
+	@Override
 	public List<Norma> obtenerNormasNoDerogadas() {
 		
 		String sql = "SELECT *, nt2.not_nombre || ' ' || n2.nor_numero || ' ' || n2.nor_nombre as deroga_padre FROM general.norma n "

@@ -13,6 +13,8 @@ public interface INormaDao {
 	
 	public List<Norma> obtenerNormas();
 	
+	public List<Norma> obtenerNorma(int normaCodigo);
+	
 	public List<Norma> obtenerNormasNoDerogadas();
 	
 	public List<EntidadExterna> obtenerEntidadesExternas();
