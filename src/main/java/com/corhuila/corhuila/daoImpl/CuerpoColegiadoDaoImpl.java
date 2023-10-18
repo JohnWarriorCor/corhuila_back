@@ -1,5 +1,6 @@
 package com.corhuila.corhuila.daoImpl;
 
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 		String sql = "select * from general.integrante_cuerpo_colegiado icc "
 				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
 				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
-				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
+				+ "left join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
 				+ "left join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
 				+ "order by icc.icc_fecha_inicio ";
 		return jdbcTemplate.query(sql, new IntegranteCuerpoColegiadoSetExtractor());
@@ -77,7 +78,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 		String sql = "select * from general.integrante_cuerpo_colegiado icc "
 				+ "inner join general.cuerpos_colegiados cc on icc.cuc_codigo = cc.cuc_codigo "
 				+ "inner join general.persona p on icc.per_codigo = p.per_codigo "
-				+ "inner join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
+				+ "left join general.usuario_tipo ut ON icc.ust_codigo = ut.ust_codigo "
 				+ "left join general.miembro_tipo mt on icc.mit_codigo = mt.mit_codigo "
 				+ "where icc.cuc_codigo = " + codigoCuerpoColegiado + " " 
 				+ "order by icc.icc_fecha_inicio ";
@@ -248,7 +249,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 			parameter.addValue("usuarioTipo", integrante.getUsuarioTipo().getCodigo());
 			parameter.addValue("miembroTipo", integrante.getMiembroTipo().getCodigo());
 			parameter.addValue("fechaInicio", integrante.getFechaInicio());
-			parameter.addValue("fechaFin", integrante.getFechaFin());
+			parameter.addValue("fechaFin", integrante.getFechaFin(), Types.DATE);
 			parameter.addValue("observacion", integrante.getObservacion());
 			
 			return result;
@@ -291,7 +292,7 @@ public class CuerpoColegiadoDaoImpl implements ICuerpoColegiadoDao{
 			parameter.addValue("usuarioTipo", integrante.getUsuarioTipo().getCodigo());
 			parameter.addValue("miembroTipo", integrante.getMiembroTipo().getCodigo());
 			parameter.addValue("fechaInicio", integrante.getFechaInicio());
-			parameter.addValue("fechaFin", integrante.getFechaFin());
+			parameter.addValue("fechaFin", integrante.getFechaFin(), Types.DATE);
 			parameter.addValue("observacion", integrante.getObservacion());
 			parameter.addValue("estado", integrante.getEstado());
 			parameter.addValue("codigo", integrante.getCodigo());
