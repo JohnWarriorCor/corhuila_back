@@ -21,6 +21,13 @@ public class FacultadServiceImpl implements IFacultadService{
 		return facultadDao.obtenerListadoFacultades();
 		
 	}
+	
+	@Override
+	public List<Facultad> obtenerListadoFacultadSede(int sedeCodigo) {
+		
+		return facultadDao.obtenerListadoFacultadSede(sedeCodigo);
+		
+	}
 
 	@Override
 	public int registrar(Facultad facultad) {
@@ -35,4 +42,5 @@ public class FacultadServiceImpl implements IFacultadService{
 		return facultadDao.actualizar(facultad);
 		
 	}
+
 }

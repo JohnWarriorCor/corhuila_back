@@ -38,6 +38,22 @@ public class FacultadDaoImpl implements IFacultadDao{
 		return jdbcTemplate.query(sql, new FacultadSetExtractor());
 		
 	}
+	
+	@Override
+	public List<Facultad> obtenerListadoFacultadSede(int sedeCodigo) {
+		
+		String sql = "select * from general.facultad f "
+				+ "inner join general.sede s on f.sed_codigo = s.sed_codigo "
+				+ "inner join general.cabeceras_centros_poblados ccp on s.ccp_divipola = ccp.ccp_divipola  "
+				+ "inner join general.municipio m on ccp.mun_divipola = m.mun_divipola "
+				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
+				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo "
+				+ "inner join general.sede_tipo st on s.set_tipo = st.set_codigo "
+				+ "where f.fac_estado = 1 and f.sed_codigo = " + sedeCodigo + " "
+				+ "order by f.fac_codigo desc";
+		return jdbcTemplate.query(sql, new FacultadSetExtractor());
+		
+	}
 
 	@Override
 	public int registrar(Facultad facultad) {

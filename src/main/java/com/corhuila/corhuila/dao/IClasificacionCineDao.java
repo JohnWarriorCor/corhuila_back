@@ -16,6 +16,8 @@ public interface IClasificacionCineDao {
 	
 	public List<CineEspecifico> obtenerListadoEspecificoAmplio(int cineAmplioCodigo);
 	
+	public List<CineDetallado> obtenerListadoDetalladoEspecifico(int cineEspecificoCodigo);
+	
 	public List<CineDetallado> obtenerListadoCineDetallado(int codigo);
 	
 	public int registrarCineAmplio(CineAmplio amplio);

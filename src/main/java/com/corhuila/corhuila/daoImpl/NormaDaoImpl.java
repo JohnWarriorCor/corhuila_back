@@ -82,7 +82,7 @@ public class NormaDaoImpl implements INormaDao{
 				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
 				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
 				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
-				+ "WHERE NOT EXISTS ( SELECT * FROM general.norma_deroga nd WHERE n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado != 0 ); ";
+				+ "WHERE n.nor_estado = 1 and NOT EXISTS ( SELECT * FROM general.norma_deroga nd WHERE n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado != 0 ); ";
 		return jdbcTemplate.query(sql, new NormaSetExtractor());
 		
 	}
@@ -362,7 +362,7 @@ public class NormaDaoImpl implements INormaDao{
 				+ "left join general.norma_deroga nd on n.nor_codigo = nd.nor_codigo_hijo and nd.nod_estado = 1 "
 				+ "left join general.norma n2 on nd.nor_codigo_padre = n2.nor_codigo "
 				+ "left join general.norma_tipo nt2 on nt2.not_codigo = n2.not_codigo "
-				+ "WHERE NOT EXISTS ( SELECT * FROM general.norma_clasificada nc WHERE n.nor_codigo = nc.nor_codigo and nc.noc_estado != 0 and nc.nog_codigo = " + normaGrupoCodigo + ");";
+				+ "WHERE n.nor_estado = 1 and NOT EXISTS ( SELECT * FROM general.norma_clasificada nc WHERE n.nor_codigo = nc.nor_codigo and nc.noc_estado != 0 and nc.nog_codigo = " + normaGrupoCodigo + ");";
 		return jdbcTemplate.query(sql, new NormaSetExtractor());
 		
 	}

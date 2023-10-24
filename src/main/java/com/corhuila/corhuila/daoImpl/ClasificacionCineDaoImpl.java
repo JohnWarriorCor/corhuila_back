@@ -76,6 +76,17 @@ public class ClasificacionCineDaoImpl implements IClasificacionCineDao{
 		return jdbcTemplate.query(sql, new CineEspecificoSetExtractor());
 		
 	}
+	
+	@Override
+	public List<CineDetallado> obtenerListadoDetalladoEspecifico(int cineEspecificoCodigo) {
+		
+		String sql = "select * from general.campo_detallado_cine cdc "
+				+ "left join general.campo_especifico_cine cec on cdc.cec_codigo = cec.cec_codigo "
+				+ "left join general.campo_amplio_cine cac on cec.cac_codigo = cac.cac_codigo "
+				+ "where cdc.cdc_estado = 1 and cdc.cec_codigo = " + cineEspecificoCodigo;
+		return jdbcTemplate.query(sql, new CineDetalladoSetExtractor());
+		
+	}
 
 	@Override
 	public int registrarCineAmplio(CineAmplio amplio) {

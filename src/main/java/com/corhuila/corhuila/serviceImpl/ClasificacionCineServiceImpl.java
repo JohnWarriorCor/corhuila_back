@@ -44,6 +44,13 @@ public class ClasificacionCineServiceImpl implements IClasificacionCineService{
 		return clasificacionCineDao.obtenerListadoEspecificoAmplio(cineAmplioCodigo);
 		
 	}
+	
+	@Override
+	public List<CineDetallado> obtenerListadoDetalladoEspecifico(int cineEspecificoCodigo) {
+		
+		return clasificacionCineDao.obtenerListadoDetalladoEspecifico(cineEspecificoCodigo);
+		
+	}
 
 	@Override
 	public List<CineDetallado> obtenerListadoCineDetallado(int codigo) {

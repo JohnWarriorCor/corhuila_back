@@ -51,6 +51,13 @@ public class ClasificacionCineRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-listado-cine-detallado-especifico/{cineEspecificoCodigo}")
+	public List<CineDetallado> obtenerListadoDetalladoEspecifico(@PathVariable int cineEspecificoCodigo) {
+		
+		return clasificacionCineService.obtenerListadoDetalladoEspecifico(cineEspecificoCodigo);
+		
+	}
+	
 	@GetMapping(path = "obtener-listado-cine/{codigo}")
 	public List<CineDetallado> obtenerListadoCineDetallado(@PathVariable int codigo) {
 		
