@@ -48,6 +48,7 @@ public class ProgramaDaoImpl implements IProgramaDao{
 				+ "inner join general.tiempo_duracion td on p.tid_codigo = td.tid_codigo "
 				+ "inner join general.tiempo_admision ta on p.tia_codigo = ta.tia_codigo "
 				+ "inner join general.norma nr on p.nor_codigo = nr.nor_codigo "
+				+ "inner join general.norma_tipo nt on nr.not_codigo = nt.not_codigo "
 				+ "inner join general.campo_detallado_cine cdc on p.cdc_codigo = cdc.cdc_codigo "
 				+ "inner join general.campo_especifico_cine cec on cdc.cec_codigo = cec.cec_codigo "
 				+ "inner join general.campo_amplio_cine cac on cec.cac_codigo = cac.cac_codigo "

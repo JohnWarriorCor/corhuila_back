@@ -38,7 +38,7 @@ public class ProgramaRowMapper implements RowMapper<Programa>{
 		programa.setCupos(rs.getInt("pro_numero_cupos"));
 		programa.setSitioWeb(rs.getString("pro_sitio_web"));
 		programa.setNormaCodigo(rs.getInt("nor_codigo"));
-		programa.setNorma(rs.getString("nor_nombre"));
+		programa.setNorma(rs.getString("not_nombre")+" "+rs.getString("nor_numero")+" "+rs.getString("nor_nombre"));
 		programa.setConvenio(rs.getInt("pro_convenio"));
 		programa.setFechaCreacion(rs.getDate("pro_fecha_creacion"));
 		programa.setFechaRegistroSnies(rs.getDate("pro_fecha_registro_snies"));
