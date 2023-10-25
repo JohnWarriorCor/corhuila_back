@@ -18,6 +18,8 @@ public class Programa implements Serializable {
 	private String nivelAcademico;
 	private int nivelFormacionCodigo;
 	private String nivelFormacion;
+	private int estadoSniesCodigo; 
+	private String estadoSnies;
 	private int ciclosCodigo;
 	private String ciclos;
 	private int modalidadCodigo;

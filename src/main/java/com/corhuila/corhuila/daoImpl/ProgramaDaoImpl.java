@@ -32,6 +32,7 @@ public class ProgramaDaoImpl implements IProgramaDao{
 	@Override
 	public List<Programa> obtenerListadoProgramas() {
 		String sql = "select * from general.programa p "
+				+ "inner join general.estado_snies es on p.ess_codigo = es.ess_codigo "
 				+ "inner join general.ciclo_propedeutico cp on p.cip_codigo = cp.cip_codigo "
 				+ "inner join general.nivel_formacion nf on p.nif_codigo = nf.nif_codigo "
 				+ "inner join general.nivel_academico na on nf.nia_codigo = na.nia_codigo " 
@@ -88,13 +89,14 @@ public class ProgramaDaoImpl implements IProgramaDao{
 	public int registrarPrograma(Programa programa) {
 		
 		String sql = "INSERT INTO general.programa "
-				+ "(pro_codigo_snies, cip_codigo, nif_codigo, mod_codigo, nbc_codigo, fac_codigo, pro_nombre, pro_titulo_otorgado, "
+				+ "(pro_codigo_snies, ess_codigo, cip_codigo, nif_codigo, mod_codigo, nbc_codigo, fac_codigo, pro_nombre, pro_titulo_otorgado, "
 				+ "pro_numero_creditos, tid_codigo, pro_duracion, tia_codigo, pro_numero_cupos, pro_sitio_web, nor_codigo, pro_convenio, cdc_codigo, "
 				+ "pro_fecha_creacion, pro_fecha_registro_snies) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
 				programa.getSnies(),
+				programa.getEstadoSniesCodigo(),
 				programa.getCiclosCodigo(),
 				programa.getNivelFormacionCodigo(),
 				programa.getModalidadCodigo(),
@@ -121,6 +123,7 @@ public class ProgramaDaoImpl implements IProgramaDao{
 			MapSqlParameterSource parameter = new MapSqlParameterSource();
 			
 			parameter.addValue("snies", programa.getSnies());
+			parameter.addValue("estadoSnies", programa.getEstadoSniesCodigo());
 			parameter.addValue("ciclos", programa.getCiclosCodigo());
 			parameter.addValue("nivelFormacion", programa.getNivelFormacionCodigo());
 			parameter.addValue("modalidad", programa.getModalidadCodigo());
@@ -154,13 +157,14 @@ public class ProgramaDaoImpl implements IProgramaDao{
 	public int actualizarPrograma(Programa programa) {
 		
 		String sql = "UPDATE general.programa "
-				+ "SET pro_codigo_snies=?, cip_codigo=?, nif_codigo=?, mod_codigo=?, nbc_codigo=?, fac_codigo=?, pro_nombre=?, pro_titulo_otorgado=?, "
+				+ "SET pro_codigo_snies=?, ess_codigo =?, cip_codigo=?, nif_codigo=?, mod_codigo=?, nbc_codigo=?, fac_codigo=?, pro_nombre=?, pro_titulo_otorgado=?, "
 				+ "pro_numero_creditos=?, tid_codigo=?, pro_duracion=?, tia_codigo=?, pro_numero_cupos=?, pro_sitio_web=?, nor_codigo=?, pro_convenio=?, "
 				+ "cdc_codigo=?, pro_fecha_creacion=?, pro_fecha_registro_snies=?, pro_estado=? "
 				+ "WHERE pro_codigo=?;";
 
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
 				programa.getSnies(),
+				programa.getEstadoSniesCodigo(),
 				programa.getCiclosCodigo(),
 				programa.getNivelFormacionCodigo(),
 				programa.getModalidadCodigo(),
@@ -188,6 +192,7 @@ public class ProgramaDaoImpl implements IProgramaDao{
 
 			MapSqlParameterSource parameter = new MapSqlParameterSource();
 			parameter.addValue("snies", programa.getSnies());
+			parameter.addValue("estadoSnies", programa.getEstadoSniesCodigo());
 			parameter.addValue("ciclos", programa.getCiclosCodigo());
 			parameter.addValue("nivelFormacion", programa.getNivelFormacionCodigo());
 			parameter.addValue("modalidad", programa.getModalidadCodigo());

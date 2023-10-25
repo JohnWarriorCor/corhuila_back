@@ -20,6 +20,8 @@ public class ProgramaRowMapper implements RowMapper<Programa>{
 		programa.setNivelAcademico(rs.getString("nia_nombre"));
 		programa.setNivelFormacionCodigo(rs.getInt("nif_codigo"));
 		programa.setNivelFormacion(rs.getString("nif_nombre"));
+		programa.setEstadoSniesCodigo(rs.getInt("ess_codigo"));
+		programa.setEstadoSnies(rs.getString("ess_nombre"));
 		programa.setCiclosCodigo(rs.getInt("cip_codigo"));
 		programa.setCiclos(rs.getString("cip_nombre"));
 		programa.setModalidadCodigo(rs.getInt("mod_codigo"));
