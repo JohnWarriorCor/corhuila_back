@@ -27,7 +27,7 @@ public class InstitucionRowMapper implements RowMapper<Institucion>{
 		institucion.setDireccion(rs.getString("ins_direccion"));
 		institucion.setTelefono(rs.getString("ins_telefono"));
 		institucion.setUrl(rs.getString("ins_pagina_web"));
-		institucion.setNorma(rs.getString("ins_norma_creacion"));
+		institucion.setNorma(rs.getInt("nor_codigo"));
 		institucion.setFechaNorma(rs.getDate("ins_fecha_norma"));
 		institucion.setEstado(rs.getInt("ins_estado"));
 		return institucion;

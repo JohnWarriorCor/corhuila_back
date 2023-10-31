@@ -49,7 +49,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 	
 	@Override
 	public List<Institucion> obtenerInstitucion() {
-		String sql = "SELECT DISTINCT ON (i.ins_nit) i.ins_nit, i.*, nj.*, s.*, ca.*, ccp.*, m.*, d.*, p.* "
+		String sql = "SELECT DISTINCT ON (i.ins_nit) i.ins_nit, i.*, nj.*, s.*, ca.*, ccp.*, m.*, d.*, p.*, n.* "
 				+ "FROM general.institucion i "
 				+ "INNER JOIN general.naturaleza_juridica nj ON i.naj_codigo = nj.naj_codigo "
 				+ "INNER JOIN general.sector s ON i.sec_codigo = s.sec_codigo "
@@ -58,6 +58,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "INNER JOIN general.municipio m ON ccp.mun_divipola = m.mun_divipola "
 				+ "INNER JOIN general.departamento d ON m.dep_divipola = d.dep_divipola "
 				+ "INNER JOIN general.pais p ON d.pai_codigo = p.pai_codigo "
+				+ "INNER JOIN general.norma n on i.nor_codigo = n.nor_codigo "
 				+ "ORDER BY i.ins_nit, i.ins_codigo DESC;";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
@@ -72,6 +73,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "inner join general.municipio m on ccp.mun_divipola = m.mun_divipola "
 				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
 				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo "
+				+ "inner join general.norma n on i.nor_codigo = n.nor_codigo "
 				+ "order by i.ins_codigo desc";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
@@ -79,7 +81,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 	@Override
 	public int registrar(Institucion institucion) {
 		String sql = "INSERT INTO general.institucion "
-				+ "(ins_nit, ins_snies, ins_snies_padre, naj_codigo, sec_codigo, caa_codigo, ins_nombre, ccp_divipola, ins_direccion, ins_telefono, ins_pagina_web, ins_norma_creacion, ins_fecha_norma) "
+				+ "(ins_nit, ins_snies, ins_snies_padre, naj_codigo, sec_codigo, caa_codigo, ins_nombre, ccp_divipola, ins_direccion, ins_telefono, ins_pagina_web, nor_codigo, ins_fecha_norma) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		int result = jdbcTemplateEjecucion.update(sql, new Object[] {
