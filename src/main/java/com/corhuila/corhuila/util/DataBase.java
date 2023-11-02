@@ -12,11 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-//import org.apache.log4j.Logger;
-
 public class DataBase {
-
-	//Logger log = Logger.getLogger(getClass().getName());
 
 	public Connection getConexion() {
 		Connection conexion = null;
@@ -33,7 +29,6 @@ public class DataBase {
 		} catch (Exception e) {
 			StringWriter stack = new StringWriter();
 			e.printStackTrace(new PrintWriter(stack));
-			//log.error("getConexion() - ERROR: " + stack.toString());
 		}
 		return conexion;
 	}
@@ -46,7 +41,6 @@ public class DataBase {
 			} catch (SQLException e) {
 				StringWriter stack = new StringWriter();
 				e.printStackTrace(new PrintWriter(stack));
-				//log.error("cerrarConexion(Connection) - ERROR: " + stack.toString());
 			}
 		}
 	}
@@ -58,7 +52,6 @@ public class DataBase {
 			} catch (SQLException e) {
 				StringWriter stack = new StringWriter();
 				e.printStackTrace(new PrintWriter(stack));
-				//log.error("cerrarConexion(PreparedStatement) - ERROR: " + stack.toString());
 			}
 		}
 	}
@@ -70,7 +63,6 @@ public class DataBase {
 			} catch (SQLException e) {
 				StringWriter stack = new StringWriter();
 				e.printStackTrace(new PrintWriter(stack));
-				//log.error("cerrarConexion(Statement) - ERROR: " + stack.toString());
 			}
 		}
 	}
@@ -82,7 +74,6 @@ public class DataBase {
 			} catch (SQLException e) {
 				StringWriter stack = new StringWriter();
 				e.printStackTrace(new PrintWriter(stack));
-				//log.error("cerrarConexion(ResultSet) - ERROR: " + stack.toString());
 			}
 		}
 	}

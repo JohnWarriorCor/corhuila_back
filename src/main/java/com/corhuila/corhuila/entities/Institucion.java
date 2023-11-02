@@ -25,7 +25,8 @@ public class Institucion implements Serializable {
 	private String direccion;
 	private String telefono;
 	private String url;
-	private int norma;
+	private int normaCodigo;
+	private String norma;
 	private Date fechaNorma;
 	private int estado;
 	

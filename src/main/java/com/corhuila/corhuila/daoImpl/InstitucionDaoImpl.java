@@ -59,6 +59,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "INNER JOIN general.departamento d ON m.dep_divipola = d.dep_divipola "
 				+ "INNER JOIN general.pais p ON d.pai_codigo = p.pai_codigo "
 				+ "INNER JOIN general.norma n on i.nor_codigo = n.nor_codigo "
+				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
 				+ "ORDER BY i.ins_nit, i.ins_codigo DESC;";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
@@ -74,6 +75,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				+ "inner join general.departamento d on m.dep_divipola = d.dep_divipola "
 				+ "inner join general.pais p on d.pai_codigo = p.pai_codigo "
 				+ "inner join general.norma n on i.nor_codigo = n.nor_codigo "
+				+ "inner join general.norma_tipo nt on n.not_codigo = nt.not_codigo "
 				+ "order by i.ins_codigo desc";
 		return jdbcTemplate.query(sql, new InstitucionSetExtractor());
 	}
@@ -96,7 +98,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 				institucion.getDireccion(),
 				institucion.getTelefono(),
 				institucion.getUrl(),
-				institucion.getNorma(),
+				institucion.getNormaCodigo(),
 				institucion.getFechaNorma(),
 				});
 		
@@ -115,7 +117,7 @@ public class InstitucionDaoImpl implements IInstitucionDao{
 			parameter.addValue("direccion", institucion.getDireccion());
 			parameter.addValue("telefono", institucion.getTelefono());
 			parameter.addValue("url", institucion.getUrl());
-			parameter.addValue("norma", institucion.getNorma());
+			parameter.addValue("norma", institucion.getNormaCodigo());
 			parameter.addValue("fechaNorma", institucion.getFechaNorma());
 			
 			return result;
