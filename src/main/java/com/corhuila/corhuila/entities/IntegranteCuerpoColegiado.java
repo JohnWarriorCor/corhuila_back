@@ -14,6 +14,8 @@ public class IntegranteCuerpoColegiado implements Serializable {
 
 	private CuerpoColegiado cuerpoColegiado;
 	
+	private String nombreCuerpoColegiado;
+	
 	private int personaCodigo;
 	
 	private String personaIdentificacion;

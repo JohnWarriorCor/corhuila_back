@@ -14,6 +14,7 @@ public class IntegranteCuerpoColegiadoRowMapper implements RowMapper<IntegranteC
 		IntegranteCuerpoColegiado integrante = new IntegranteCuerpoColegiado();
 		integrante.setCodigo(rs.getInt("icc_codigo"));
 		integrante.setCuerpoColegiado(new CuerpoColegiadoRowMapper().mapRow(rs, rowNum));
+		integrante.setNombreCuerpoColegiado(rs.getString("cuc_nombre"));
 		integrante.setPersonaCodigo(rs.getInt("per_codigo"));
 		integrante.setPersonaIdentificacion(rs.getString("per_identificacion"));
 		integrante.setPersonaNombre(rs.getString("per_nombre"));
