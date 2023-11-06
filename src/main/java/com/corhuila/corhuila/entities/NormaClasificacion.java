@@ -11,6 +11,9 @@ public class NormaClasificacion implements Serializable {
 
 	private int codigo;
 	private Norma norma;
+	private String nombreCompleto;
+	private String entidad;
+	private String normaTipo;
 	private NormaGrupo normaGrupo;
 	private int estado;
 	

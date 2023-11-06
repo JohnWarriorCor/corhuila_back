@@ -56,6 +56,14 @@ public class ProgramaDaoImpl implements IProgramaDao{
 				+ "where p.pro_estado = 1";
 		return jdbcTemplate.query(sql, new ProgramaSetExtractor());
 	}
+	
+	@Override
+	public List<NivelFormacion> obtenerListadoNivelesFormacion() {
+		String sql = "select * from general.nivel_formacion nf "
+				+ "inner join general.nivel_academico na on nf.nia_codigo = na.nia_codigo "
+				+ "where nf.nif_estado = 1";
+		return jdbcTemplate.query(sql, new NivelFormacionSetExtractor());
+	}
 
 	@Override
 	public List<NivelFormacion> obtenerListadoNivelFormacion(int nivelAcademicoCodigo) {

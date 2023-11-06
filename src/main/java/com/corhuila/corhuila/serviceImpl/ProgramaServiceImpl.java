@@ -24,6 +24,13 @@ public class ProgramaServiceImpl implements IProgramaService{
 		return programaDao.obtenerListadoProgramas();
 		
 	}
+	
+	@Override
+	public List<NivelFormacion> obtenerListadoNivelesFormacion() {
+		
+		return programaDao.obtenerListadoNivelesFormacion();
+		
+	}
 
 	@Override
 	public List<NivelFormacion> obtenerListadoNivelFormacion(int nivelAcademicoCodigo) {

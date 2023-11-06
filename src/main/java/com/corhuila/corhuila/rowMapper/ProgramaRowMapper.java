@@ -31,6 +31,7 @@ public class ProgramaRowMapper implements RowMapper<Programa>{
 		programa.setNbcCodigo(rs.getInt("nbc_codigo"));
 		programa.setNbc(rs.getString("nbc_nombre"));
 		programa.setFacultad(new FacultadRowMapper().mapRow(rs, rowNum));
+		programa.setSede(rs.getString("sed_nombre"));
 		programa.setCreditos(rs.getInt("pro_numero_creditos"));
 		programa.setTipoDuracionCodigo(rs.getInt("tid_codigo"));
 		programa.setTipoDuracion(rs.getString("tid_nombre"));

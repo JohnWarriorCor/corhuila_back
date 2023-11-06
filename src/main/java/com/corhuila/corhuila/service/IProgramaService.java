@@ -11,6 +11,8 @@ public interface IProgramaService {
 	
 	public List<Programa> obtenerListadoProgramas();
 	
+	public List<NivelFormacion> obtenerListadoNivelesFormacion();
+	
 	public List<NivelFormacion> obtenerListadoNivelFormacion(int nivelAcademicoCodigo);
 	
 	public List<AreaConocimiento> obtenerListadoAreaConocimiento();

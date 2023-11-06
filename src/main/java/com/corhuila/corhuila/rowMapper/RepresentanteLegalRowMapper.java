@@ -14,7 +14,8 @@ public class RepresentanteLegalRowMapper implements RowMapper<RepresentanteLegal
 		RepresentanteLegal representanteLegal = new RepresentanteLegal();
 		representanteLegal.setCodigo(rs.getInt("rel_codigo"));
 		representanteLegal.setPersona(new PersonaRowMapper().mapRow(rs, rowNum));
-		representanteLegal.setNorma(rs.getInt("rel_norma"));
+		representanteLegal.setPersonaNombreCompleto(rs.getString("per_nombre")+" "+rs.getString("per_apellido"));
+		representanteLegal.setPersonaCorreo(rs.getString("per_email"));
 		representanteLegal.setFechaInicio(rs.getDate("rel_fecha_inicio_nombramiento"));
 		representanteLegal.setFechaFin(rs.getDate("rel_fecha_fin_nombramiento"));
 		representanteLegal.setJustificacion(rs.getString("rel_observacion"));

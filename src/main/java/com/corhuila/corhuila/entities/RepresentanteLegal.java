@@ -14,6 +14,10 @@ public class RepresentanteLegal implements Serializable{
 
 	private Persona persona;
 	
+	private String personaNombreCompleto;
+	
+	private String personaCorreo;
+	
 	private int norma;
 
 	private Date fechaInicio;

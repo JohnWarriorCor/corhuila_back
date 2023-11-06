@@ -31,6 +31,13 @@ public class ProgramaRestController {
 		
 	}
 	
+	@GetMapping(path = "obtener-listado-niveles-formacion")
+	public List<NivelFormacion> obtenerListadoNivelesFormacion() {
+		
+		return programaService.obtenerListadoNivelesFormacion();
+		
+	}
+	
 	@GetMapping(path = "obtener-listado-nivel-formacion/{nivelAcademicoCodigo}")
 	public List<NivelFormacion> obtenerListadoNivelFormacion(@PathVariable int nivelAcademicoCodigo) {
 		

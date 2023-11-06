@@ -29,6 +29,7 @@ public class Programa implements Serializable {
 	private int nbcCodigo;
 	private String nbc;
 	private Facultad facultad;
+	private String sede;
 	private int creditos;
 	private int tipoDuracionCodigo;
 	private String tipoDuracion;
